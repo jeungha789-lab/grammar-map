@@ -316,8 +316,48 @@ details.rec summary span{font:500 .85rem/1.4 var(--f-ui)}
 .stage.oh .l{font-family:var(--f-ui)}
 .stage.oh.modern{font-family:var(--f-body)}
 </style>
+<style>
+#gate{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:16px;background:var(--bg);overflow:auto}
+html.locked #gate{display:flex}html.locked body>:not(#gate):not(script){display:none!important}
+#gate form{width:100%;max-width:380px;background:var(--paper);border:1.5px solid var(--ink);padding:22px 18px;display:grid;gap:14px}
+#gate h2{margin:4px 0 0;font:700 1.35rem/1.3 var(--f-ui);color:var(--ink)}#gate p.g-sub{margin:0;color:var(--mute);font-size:.9rem}
+#gate label{display:grid;gap:6px;font:600 .9rem var(--f-ui);color:var(--ink)}
+#gate select,#gate input{min-height:46px;font:500 1rem var(--f-ui);padding:0 12px;border:1.5px solid var(--ink);background:var(--bg0,var(--paper));color:var(--ink);border-radius:0;width:100%;box-sizing:border-box}
+#gate button{min-height:48px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font:700 1rem var(--f-ui);cursor:pointer}
+#gate .g-err{margin:0;color:#c0392b;font-weight:600;font-size:.9rem;min-height:1.2em}
+.who{margin-top:.6em}.who button{background:none;border:0;padding:0;color:inherit;text-decoration:underline;cursor:pointer;font:inherit}
+</style>
 </head>
 <body>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="g-t"><form id="g-form" autocomplete="off">
+<p class="mark">정하쌤과 함께하는 정하는 국어</p><h2 id="g-t">국어 문법 지도 입장</h2><p class="g-sub">학교를 고르고 이름을 입력하세요.</p>
+<label>학교<select id="g-s" required><option value="">학교를 고르세요</option><option value="정명">정명 고등학교</option><option value="중흥">중흥 고등학교</option><option value="심원">심원 고등학교</option></select></label>
+<label>이름<input id="g-n" type="text" inputmode="text" maxlength="12" placeholder="예: 홍길동" required></label>
+<p class="g-err" id="g-e" aria-live="polite"></p><button type="submit">입장하기</button></form></div>
+<script>
+(function(){const H=new Set(["0cf8b0d8df689cecb380", "108a4ecd15a99bc75f18", "3f715f09e4903036ef1a", "4828239be8d71b3efbf2", "4b1ea1ef77f12e1ba1aa", "4c1bc0919964494e5cbf", "4d13a02e99b54e1fa2ae", "50315dd1b015dd892f0a", "50e06197d7bc5c30ace0", "576c765654ae90fb9966", "634857a57b73720b53e6", "67d2b55569946c1869bf", "6d2291be930fa063eb14", "6d63eff7accf42c9cad2", "7341da89771404ae8465", "7715c735ecd85588da3c", "7ac028f6025c8f789f12", "7bc51cfe55aa8e4f1b0d", "7fe7ef2b3e4875b7d5c5", "87faeff5f4085b89989d", "8914b49eb6de4280b1d9", "9217add85a964e36ddc5", "9554d684e9d51dfa20de", "95ec0a743093e79944d9", "9adbb8744e2d041d56ca", "a0dc82dbc4330dd48aad", "a957527ef61df580850a", "aac0a9f2ea775f32a1ee", "ab9fc2a2df5c3ac1cddd", "ac2bdfd48c13fc90e737", "b358591df7665f8cff15", "b860f616d9510cd7dae7", "c0ca7e740adda3e4ce01", "c288a384b071ea5fe115", "c3f4153204e4f239b58d", "c5fef04cb11fc922d400", "ca756af92df0870a7e49", "cce3d9a42b0e77ca140c", "cdf69d430c570a0147c1", "cee2a50322798f13bb62", "d40692234fb48b59603f", "daea7bbd110051ab6f10", "dc4cd50ee3b7037d6580", "ddcf9e28494b9392c7d5", "e0e4fb4baa28f171fbf5", "e1af63a63d72f91ca051", "e1e186e9b8a2ff1b3721", "e55725cb50df40733780", "e714cc6ea6ac89e04d6c", "eb64fd6b5b6b51744bb0", "f80810cbd08e1de140d2", "fb95c973561be5861f57", "ff5f9843720c905e1c05"]),S='jh-gm-7Qx2',K='gm-who',D=document.documentElement;
+function sha(s){const k=[],w=[],r=(x,n)=>x>>>n|x<<32-n;let hh=[];for(let c=2,n=0;n<64;c++){let p=1;for(let d=2;d*d<=c;d++)if(c%d===0){p=0;break}if(p){if(n<8)hh[n]=Math.pow(c,.5)*2**32|0;k[n++]=Math.pow(c,1/3)*2**32|0}}
+const b=new TextEncoder().encode(s),l=b.length,m=new Uint8Array(((l+9+63)>>6)<<6);m.set(b);m[l]=128;const bl=l*8;for(let i=0;i<4;i++)m[m.length-1-i]=bl>>>(8*i)&255;
+for(let o=0;o<m.length;o+=64){for(let i=0;i<64;i++)w[i]=i<16?(m[o+i*4]<<24|m[o+i*4+1]<<16|m[o+i*4+2]<<8|m[o+i*4+3]):(r(w[i-2],17)^r(w[i-2],19)^w[i-2]>>>10)+w[i-7]+(r(w[i-15],7)^r(w[i-15],18)^w[i-15]>>>3)+w[i-16]|0;
+let [a,b2,c,d,e,f,g,h]=hh;for(let i=0;i<64;i++){const t1=h+(r(e,6)^r(e,11)^r(e,25))+(e&f^~e&g)+k[i]+w[i]|0,t2=(r(a,2)^r(a,13)^r(a,22))+(a&b2^a&c^b2&c)|0;h=g;g=f;f=e;e=d+t1|0;d=c;c=b2;b2=a;a=t1+t2|0}
+hh=[a,b2,c,d,e,f,g,h].map((x,i)=>hh[i]+x|0)}return hh.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('')}
+const norm=n=>n.normalize('NFC').replace(/\s+/g,'').replace(/[A-Za-z]+$/,'');
+const ok=(s,n)=>H.has(sha(S+s+'|'+norm(n)).slice(0,20));
+let who=null;try{who=JSON.parse(localStorage.getItem(K))}catch(e){}
+if(!(who&&ok(who.s,who.n)))D.classList.add('locked');
+window.gmSha=sha;
+document.addEventListener('DOMContentLoaded',()=>{
+ const f=document.getElementById('g-form'),s=document.getElementById('g-s'),n=document.getElementById('g-n'),e=document.getElementById('g-e');
+ const show=()=>{const ft=document.querySelector('footer.foot');if(!ft||!who)return;let p=ft.querySelector('.who');if(!p){p=document.createElement('p');p.className='who';ft.append(p)}
+  p.innerHTML='';p.append(s.querySelector('option[value="'+who.s+'"]').textContent+' '+norm(who.n)+' 학생 · ');const b=document.createElement('button');b.type='button';b.textContent='다른 이름으로 입장';
+  b.onclick=()=>{try{localStorage.removeItem(K)}catch(x){}who=null;s.value='';n.value='';e.textContent='';D.classList.add('locked');scrollTo(0,0);s.focus()};p.append(b)};
+ if(!D.classList.contains('locked'))show();
+ f.addEventListener('submit',v=>{v.preventDefault();const sv=s.value,nv=n.value.trim();
+  if(!sv){e.textContent='학교를 골라 주세요.';s.focus();return}if(!nv){e.textContent='이름을 입력해 주세요.';n.focus();return}
+  if(!ok(sv,nv)){e.textContent='명단에서 찾지 못했어요. 학교와 이름을 다시 확인해 주세요.';n.select();return}
+  who={s:sv,n:nv};try{localStorage.setItem(K,JSON.stringify(who))}catch(x){}e.textContent='';D.classList.remove('locked');show();scrollTo(0,0)});
+});})();
+</script>
 
 
 <header class="top"><div class="wrap topin">
