@@ -9,7 +9,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Nanum+Pen+Script&display=swap">
 <style>
-/* 배치: 학교 프린트 한 장 같은 '장'을 탭으로 넘긴다. 장마다 가지 지도 → 빈칸 확인 → 확인 문제 → 실험대 → 헷갈리는 질문. 휴대폰 화면을 먼저 생각했다. */
+/* 배치: 학교 프린트 한 장 같은 '장'을 탭으로 넘긴다. 장마다 가지 지도 → 실험대 → 헷갈리는 질문 → 빈칸 확인 → 확인 문제. 휴대폰 화면을 먼저 생각했다. */
 :root{
   --bg:#f4f3f6; --paper:#fdfdfe; --ink:#1d1a22; --ink2:#3d3846; --mute:#6b6574; --line:#cfcbd6;
   --plum:#55357a; --plum-soft:#e9e2f2; --on-plum:#ffffff; --pen:#c2362b; --on-pen:#ffffff; --hl:#ffe08a;
@@ -885,8 +885,19 @@ const D4=[
   cap:'<em>-아서</em>가 앞 절과 뒤 절을 <b>원인</b>의 관계로 이었다. 종속적으로 이어진문장이다. 보조적으로 앞뒤를 바꿔 보면 ‘땅이 젖어서 비가 왔다’가 되어 뜻이 달라진다.'},
  {name:'부사절 -아서',a:[['a1','비가'],['a2','왔다.'],P,['b1','길이'],['b2','질다.']],b:[['b1','길이'],LB,['a1','비가','cl'],['a2','와<em>서</em>','cl'],RB,['b2','질다.']],
   cap:'‘비가 와서’가 ‘길이 질다’ <b>안에</b> 들어가 ‘질다’를 꾸미는 <b>부사어</b>가 되었다. 신정하쌤 기준으로 <b>부사절</b>이다. ‘비가 와서 땅이 젖었다’처럼 앞뒤 절을 원인으로 이으면 종속적으로 이어진문장이다.'},
- {name:'명사절',a:[['a1','그가'],['a2','범인이다.'],P,['b1','철수는'],['b2','그것을','dim'],['b3','몰랐다.']],b:[['b1','철수는'],LB,['a1','그가','cl'],['a2','범인<em>임</em>','cl'],RB,['b2','<em>을</em>','tight'],['b3','몰랐다.']],
-  cap:'명사형 어미 <em>-ㅁ</em>이 붙은 절이 통째로 <b>목적어</b> 자리에 들어갔다. 뒤에 목적격 조사 ‘을’이 붙은 것이 증거다.'},
+ {name:'명사절',v:[
+  {name:'주어 -기',a:[['a1','시험'],['a2','문제의'],['a3','난이도를'],['a4','조정한다.'],P,['b1','그것이','dim'],['b2','쉽지'],['b3','않다.']],b:[LB,['a1','시험','cl'],['a2','문제의','cl'],['a3','난이도를','cl'],['a4','조정하<em>기</em>','cl'],RB,['b1','<em>가</em>','tight'],['b2','쉽지'],['b3','않다.']],
+   cap:'명사형 어미 <em>-기</em>가 붙은 절이 통째로 <b>주어</b> 자리에 들어갔다. 뒤에 주격 조사 ‘가’가 붙은 것이 증거다.'},
+  {name:'주어 -음',a:[['a1','신용을'],['a2','얻는다.'],P,['b1','이런'],['b2','장사는'],['b3','그것이','dim'],['b4','제일이다.']],b:[['b1','이런'],['b2','장사는'],LB,['a1','신용을','cl'],['a2','얻<em>음</em>','cl'],RB,['b3','<em>이</em>','tight'],['b4','제일이다.']],
+   cap:'명사형 어미 <em>-음</em>이 붙은 절이 <b>주어</b>가 되었다. 뒤에 주격 조사 ‘이’가 붙었다.'},
+  {name:'목적어 -음',a:[['a1','그가'],['a2','범인이다.'],P,['b2','그것을','dim'],['b3','확증할'],['b4','수'],['b5','없다.']],b:[LB,['a1','그가','cl'],['a2','범인<em>임</em>','cl'],RB,['b2','<em>을</em>','tight'],['b3','확증할'],['b4','수'],['b5','없다.']],
+   cap:'명사형 어미 <em>-ㅁ</em>이 붙은 절이 통째로 <b>목적어</b> 자리에 들어갔다. 뒤에 목적격 조사 ‘을’이 붙은 것이 증거다. 이 문장은 주어가 생략되었다.'},
+  {name:'목적어 -기',a:[['a1','그녀가'],['a2','우리'],['a3','동네로'],['a4','온다.'],P,['b1','나는'],['b2','그것을','dim'],['b3','기다리고'],['b4','있다.']],b:[['b1','나는'],LB,['a1','그녀가','cl'],['a2','우리','cl'],['a3','동네로','cl'],['a4','오<em>기</em>','cl'],RB,['b2','<em>를</em>','tight'],['b3','기다리고'],['b4','있다.']],
+   cap:'명사형 어미 <em>-기</em>가 붙은 절이 <b>목적어</b>가 되었다. 뒤에 목적격 조사 ‘를’이 붙었다.'},
+  {name:'부사어',a:[['a1','경치가'],['a2','좋다.'],P,['b1','그것으로는','dim'],['b2','금강산이'],['b3','최고다.']],b:[LB,['a1','경치가','cl'],['a2','좋<em>기</em>','cl'],RB,['b1','<em>로</em>는','tight'],['b2','금강산이'],['b3','최고다.']],
+   cap:'명사형 어미 <em>-기</em>가 붙은 절에 부사격 조사 ‘로’가 붙어 <b>부사어</b>가 되었다(‘는’은 보조사).'},
+  {name:'관형어',a:[['a1','겨울이'],['a2','온다.'],P,['b1','곰은'],['b2','그','dim'],['b3','전에는'],['b4','일어나지'],['b5','않아.']],b:[['b1','곰은'],LB,['a1','겨울이','cl'],['a2','오<em>기</em>','cl'],RB,['b3','<em>전</em>에는'],['b4','일어나지'],['b5','않아.']],
+   cap:'명사절 뒤에 조사가 없고 바로 체언 ‘전’이 왔다. 명사절이 ‘전’을 꾸미는 <b>관형어</b>다. 관형격 조사 ‘의’가 생략된 것으로 본다.'}]},
  {name:'관형절',a:[['a1','나는'],['a2','어제'],['a3','영화를'],['a4','보았다.'],P,['b0','그'],['b1','영화가'],['b2','재미있었다.']],b:[LB,['a1','나는','cl'],['a2','어제','cl'],['a4','<em>본</em>','cl'],RB,['b1','영화가'],['b2','재미있었다.']],
   cap:'관형사형 어미 <em>-ㄴ</em>이 붙은 절이 ‘영화’를 꾸미는 <b>관형어</b>가 되었다. 절 안의 ‘영화를’은 꾸밈받는 말과 같아서 빠졌다.'},
  {name:'부사절',a:[['a1','소리도'],['a2','없다.'],P,['b1','그는'],['b2','바람처럼'],['b3','사라졌다.']],b:[['b1','그는'],['b2','바람처럼'],LB,['a1','소리도','cl'],['a2','없<em>이</em>','cl'],RB,['b3','사라졌다.']],
@@ -1076,18 +1087,20 @@ function labAB(D,btn){
   };
 }
 function lab4(box,S){
-  let ti=0,merged=false,tm;
-  const st=h('div','stage'),cap=h('p','cap'),tg=h('button','act');tg.type='button';
+  let ti=0,vi=0,merged=false,tm;
+  const st=h('div','stage'),cap=h('p','cap'),sub=h('div','ctl sub'),tg=h('button','act');tg.type='button';
   const upd=()=>{
-    const d=D4[ti];
-    morph(st,(merged?d.b:d.a).map(t=>[ti+t[0],t[1],t[2]]));
+    const D=D4[ti],d=D.v?D.v[vi]:D,k=ti+'.'+vi;
+    morph(st,(merged?d.b:d.a).map(t=>[k+t[0],t[1],t[2]]));
     setCap(cap,merged?d.cap:(d.cap0||'홑문장 두 개다. 주어와 서술어가 각각 한 번씩 나타난다.'));
     tg.textContent=merged?'다시 나누기':'합치기';
   };
   const auto=()=>{clearTimeout(tm);merged=false;upd();tm=setTimeout(()=>{merged=true;upd()},T(1200)+150)};
   tg.onclick=()=>{clearTimeout(tm);merged=!merged;upd()};
-  box.append(row('',seg(D4.map(d=>d.name),i=>{ti=i;auto()}),tg),st,cap);
-  S.play=()=>{st.replaceChildren();auto()};
+  const pick=i=>{ti=i;vi=0;const D=D4[i];sub.hidden=!D.v;sub.replaceChildren(...(D.v?[seg(D.v.map(v=>v.name),j=>{vi=j;auto()},'sm')]:[]));auto()};
+  sub.hidden=true;
+  box.append(row('',seg(D4.map(d=>d.name),pick),tg),sub,st,cap);
+  S.play=()=>{st.replaceChildren();pick(ti)};
 }
 function lab5(box,S){
   let ci=0,vi=0,fix=false;
@@ -1983,7 +1996,7 @@ SH.forEach((S,i)=>{
   const el=h('section','sheet');el.hidden=true;S.el=el;el.id='sheet-'+S.id;
   const head=h('div','head','<h2 class="band"><span class="no">'+(i+1)+'</span>'+S.title+'</h2><p class="lede">'+S.lede+'</p>');
   /* 바로가기 */
-  const parts=[['tree','가지 지도'],['bl','빈칸 확인'],...(QZ[i]?[['qz','확인 문제']]:[]),['lab','실험대'],['qa','헷갈리는 질문']];
+  const parts=[['tree','가지 지도'],['lab','실험대'],['qa','헷갈리는 질문'],['bl','빈칸 확인'],...(QZ[i]?[['qz','확인 문제']]:[])];
   const jump=h('nav','jump');jump.setAttribute('aria-label','이 단원 바로가기');
   parts.forEach(([k,t])=>{const b=h('button',null,t);b.type='button';b.onclick=()=>{const t2=document.getElementById(S.id+'-'+k);if(t2)scrollToEl(t2)};jump.append(b)});
   /* 학습 기록 */
@@ -2008,7 +2021,7 @@ SH.forEach((S,i)=>{
   const qaWrap=h('div',null,'<h3>헷갈리는 질문</h3>'),qa=h('div','qa');qaWrap.id=S.id+'-qa';
   QA[i].forEach(([q,a])=>qa.append(h('details',null,'<summary><span>'+q+'</span></summary><p>'+a+'</p>')));
   qaWrap.append(qa);
-  el.append(head,jump,rec,treeWrap,blWrap,...(QZ[i]?[qzWrap]:[]),labWrap,qaWrap);main.append(el);
+  el.append(head,jump,rec,treeWrap,labWrap,qaWrap,blWrap,...(QZ[i]?[qzWrap]:[]));main.append(el);
   if(window.ResizeObserver)new ResizeObserver(()=>draw(S)).observe(S.inner);
 });
 if(!window.ResizeObserver)addEventListener('resize',()=>SH.forEach(draw));
